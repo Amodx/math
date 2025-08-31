@@ -1,4 +1,3 @@
-import { Matrix3x3Like } from "../Matrices/Matrix3x3Like";
 import { Mat3Array } from "../Matrices/Matrix.types";
 import { Vec3Array } from "./Vector.types";
 const encodeZigZag = (n: number) => {
@@ -10,8 +9,13 @@ const cantorPair = (a: number, b: number) => {
 };
 
 const temp: Vec3Array = [0, 0, 0];
-
+const KEYS: Readonly<["x", "y", "z"]> = Object.freeze(["x", "y", "z"]);
 export class Vector3Like {
+  
+  static Keys() {
+    return KEYS;
+  }
+
   static Create(x = 0, y = 0, z = 0): Vector3Like {
     return { x, y, z };
   }
@@ -21,6 +25,7 @@ export class Vector3Like {
     temp[0] = isArray ? input[0] : input.x;
     temp[1] = isArray ? input[1] : input.y;
     temp[2] = isArray ? input[2] : input.z;
+
     return temp;
   }
 
@@ -395,9 +400,5 @@ export class Vector3Like {
     return { x: v[0], y: v[1], z: v[2] };
   }
 
-  private constructor(
-    public x: number,
-    public y: number,
-    public z: number
-  ) {}
+  private constructor(public x: number, public y: number, public z: number) {}
 }

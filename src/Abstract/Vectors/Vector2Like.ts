@@ -1,7 +1,10 @@
-import { Mat2Array, Mat3Array } from "../Matrices/Matrix.types";
+import { Mat2Array } from "../Matrices/Matrix.types";
 import { Vec2Array } from "./Vector.types";
-
+const KEYS: Readonly<["x", "y"]> = Object.freeze(["x", "y"]);
 export class Vector2Like {
+  static Keys() {
+    return KEYS;
+  }
   static ApplyMatrix(matrix: Mat2Array, vec: Vector2Like): Vector2Like {
     return this.ApplyMatrixToRef(matrix, vec, Vector2Like.Create());
   }
@@ -280,8 +283,5 @@ export class Vector2Like {
     return new Vector2Like(v[0], v[1]);
   }
 
-  private constructor(
-    public x: number,
-    public y: number
-  ) {}
+  private constructor(public x: number, public y: number) {}
 }

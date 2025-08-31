@@ -1,7 +1,15 @@
 import { Mat4Array } from "../Matrices/Matrix.types";
 import { Vec4Array } from "./Vector.types";
-
+const KEYS: Readonly<["x", "y", "z", "w"]> = Object.freeze([
+  "x",
+  "y",
+  "z",
+  "w",
+]);
 export class Vector4Like {
+  static Keys() {
+    return KEYS;
+  }
   static Create(x = 0, y = 0, z = 0, w = 0): Vector4Like {
     return { x, y, z, w };
   }
