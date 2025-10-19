@@ -9,17 +9,24 @@ const cantorPair = (a: number, b: number) => {
 };
 
 const temp: Vec3Array = [0, 0, 0];
+
+export type Vector3Axes = "x" | "y" | "z";
 const KEYS: Readonly<["x", "y", "z"]> = Object.freeze(["x", "y", "z"]);
+const KEY_INDEXES: Readonly<Record<Vector3Axes, number>> = Object.freeze({
+  x: 0,
+  y: 1,
+  z: 2,
+});
 export class Vector3Like {
-  
   static Keys() {
     return KEYS;
   }
-
+  static KeyIndexes() {
+    return KEY_INDEXES;
+  }
   static Create(x = 0, y = 0, z = 0): Vector3Like {
     return { x, y, z };
   }
-
   static Deconstruct(input: Vec3Array | Vector3Like): Readonly<Vec3Array> {
     const isArray = Array.isArray(input);
     temp[0] = isArray ? input[0] : input.x;

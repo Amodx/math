@@ -1,6 +1,6 @@
 {
  "name": "@amodx/math",
- "version": "0.0.12",
+ "version": "0.0.13",
  "module": "index.js",
  "types": "index.d.ts",
  "type": "module",

@@ -6,9 +6,19 @@ const KEYS: Readonly<["x", "y", "z", "w"]> = Object.freeze([
   "z",
   "w",
 ]);
+const KEY_INDEXES: Readonly<Record<Vector4Axes, number>> = Object.freeze({
+  x: 0,
+  y: 1,
+  z: 2,
+  w: 3,
+});
+export type Vector4Axes = "x" | "y" | "z" | "w";
 export class Vector4Like {
   static Keys() {
     return KEYS;
+  }
+  static KeyIndexes() {
+    return KEY_INDEXES;
   }
   static Create(x = 0, y = 0, z = 0, w = 0): Vector4Like {
     return { x, y, z, w };

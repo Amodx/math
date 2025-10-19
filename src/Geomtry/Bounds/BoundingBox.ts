@@ -72,6 +72,28 @@ export class BoundingBox implements BoundsInterface, BoundsMinMaxData {
     return true;
   }
 
+  rayIntersectionFromWithin(
+    origin: Vector3Like,
+    direction: Vector3Like,
+    length = Infinity
+  ): number {
+    let t = Infinity;
+    if (direction.x > 0) t = Math.min(t, (this.max.x - origin.x) / direction.x);
+    else if (direction.x < 0)
+      t = Math.min(t, (this.min.x - origin.x) / direction.x);
+
+    if (direction.y > 0) t = Math.min(t, (this.max.y - origin.y) / direction.y);
+    else if (direction.y < 0)
+      t = Math.min(t, (this.min.y - origin.y) / direction.y);
+
+    if (direction.z > 0) t = Math.min(t, (this.max.z - origin.z) / direction.z);
+    else if (direction.z < 0)
+      t = Math.min(t, (this.min.z - origin.z) / direction.z);
+
+    if (!isFinite(t) || t < 0 || t > length) return Infinity;
+    return t;
+  }
+  
   rayIntersection(
     origin: Vector3Like,
     direction: Vector3Like,

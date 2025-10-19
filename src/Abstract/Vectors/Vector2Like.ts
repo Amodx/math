@@ -1,9 +1,17 @@
 import { Mat2Array } from "../Matrices/Matrix.types";
 import { Vec2Array } from "./Vector.types";
 const KEYS: Readonly<["x", "y"]> = Object.freeze(["x", "y"]);
+export type Vector2Axes = "x" | "y";
+const KEY_INDEXES: Readonly<Record<Vector2Axes, number>> = Object.freeze({
+  x: 0,
+  y: 1,
+});
 export class Vector2Like {
   static Keys() {
     return KEYS;
+  }
+  static KeyIndexes() {
+    return KEY_INDEXES;
   }
   static ApplyMatrix(matrix: Mat2Array, vec: Vector2Like): Vector2Like {
     return this.ApplyMatrixToRef(matrix, vec, Vector2Like.Create());
