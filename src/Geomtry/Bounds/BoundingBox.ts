@@ -60,13 +60,17 @@ export class BoundingBox implements BoundsInterface, BoundsMinMaxData {
   }
 
   intersectsPoint(point: Vector3Like): boolean {
+    return this.intersectsXYZ(point.x, point.y, point.z);
+  }
+
+  intersectsXYZ(x: number, y: number, z: number): boolean {
     if (
-      point.x < this.min.x ||
-      point.y < this.min.y ||
-      point.z < this.min.z ||
-      point.x > this.max.x ||
-      point.y > this.max.y ||
-      point.z > this.max.z
+      x < this.min.x ||
+      y < this.min.y ||
+      z < this.min.z ||
+      x > this.max.x ||
+      y > this.max.y ||
+      z > this.max.z
     )
       return false;
     return true;
@@ -93,7 +97,7 @@ export class BoundingBox implements BoundsInterface, BoundsMinMaxData {
     if (!isFinite(t) || t < 0 || t > length) return Infinity;
     return t;
   }
-  
+
   rayIntersection(
     origin: Vector3Like,
     direction: Vector3Like,
